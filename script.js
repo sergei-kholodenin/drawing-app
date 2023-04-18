@@ -1,10 +1,41 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const colorEl = document.getElementById("color");
+const btnDec = document.getElementById("decrease");
+const btnInc = document.getElementById("increase");
+const sizeEl = document.querySelector(".size");
+const clear = document.getElementById("clear");
+
+clear.addEventListener("click", () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
 
 let size = 20,
     isPressed = false,
     color = 'black',
     x, y;
+
+colorEl.addEventListener("change", (e) => {
+    color = e.target.value;
+});
+
+btnDec.addEventListener('click', () => {
+    size -= 5;
+    if (size < 5) {
+        size = 5;
+    }
+    sizeEl.textContent = `${size}`;
+
+});
+
+btnInc.addEventListener('click', () => {
+    size += 5;
+    if (size > 35) {
+        size = 35;
+    }
+    sizeEl.textContent = `${size}`;
+
+});
 
 canvas.addEventListener('mousedown', (e) => {
     isPressed = true;
